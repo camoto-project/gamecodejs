@@ -13,6 +13,16 @@ Some game executables have large data chunks.  This library's focus is on small
 bits of data and so it does not provide access to those large chunks.  Instead,
 those are accessible through gamearchive.js as an archive file.
 
+## Game support
+
+The library currently supports these games:
+
+ * Cosmo's Cosmic Adventure (episode 1)
+
+Eventually, the patching functionality will work on any .exe file, specific game
+support is only needed for things like changing the text messages hard-coded
+into the game.
+
 ## Installation as an end-user
 
 If you wish to use the command-line `gamecode` utility to work with game
