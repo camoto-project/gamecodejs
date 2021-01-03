@@ -1,5 +1,5 @@
 # gamecode.js
-Copyright 2010-2020 Adam Nielsen <<malvineous@shikadi.net>>  
+Copyright 2010-2021 Adam Nielsen <<malvineous@shikadi.net>>  
 
 This is a Javascript library that can modify executable files for a number of
 MS-DOS games from the 1990s.  It allows simple changes like modifying the text
@@ -29,6 +29,8 @@ If you wish to use the command-line `gamecode` utility to work with game
 executables directly, you can install the library globally on your system:
 
     npm install -g @camoto/gamecode
+
+For Arch Linux users the AUR package `gamecodejs` is also available.
 
 ### Command line interface
 
@@ -60,17 +62,19 @@ usual way:
 
 See `cli/index.js` for example use.  The quick start is:
 
-    import GameCode from '@camoto/gamecode';
-    import GameCodeDecompress from '@camoto/gamecode/util/decompress.js';
+    import {
+        all as gamecodeFormats,
+        decompressEXE,
+        exe_cosmo1 as formatHandler,
+    } from '@camoto/gamecode';
     
     // Read an executable's attributes into memory.
-    const handler = GameCode.getHandler('exe-cosmo');
     const content = {
         // Load the file and UNLZEXE it if needed.
-        main: GameCodeDecompress(fs.readFileSync('cosmo1.exe')),
+        main: decompressEXE(fs.readFileSync('cosmo1.exe')),
         // Some formats need additional files here, see handler.supps()
     };
-    let exe = handler.extract(content);
+    let exe = formatHandler.extract(content);
     
     // List the attributes.
     console.log(exe.attributes);
@@ -79,7 +83,7 @@ See `cli/index.js` for example use.  The quick start is:
     exe.attributes['filename.music.1'].value = 'newsong.mni';
     
     // Write the .exe back to disk with the modifications.
-    const outBuffer = handler.patch(content, exe);
+    const outBuffer = formatHandler.patch(content, exe);
     fs.writeFileSync('cosmo1a.exe', outBuffer.main);
 
 ## Installation as a contributor
@@ -100,36 +104,22 @@ You're ready to go!  To add a new file format:
     considerably.  If you're not sure, `arc-grp-build.js` is a good
     starting point as it is fairly simple.
     
- 2. Edit the main `index.js` and add a `require()` statement for your new file.
-    
- 3. Make a folder in `test/` for your new format and populate it with
-    files similar to the other formats.  The tests work by creating
-    a standard archive file with some preset files in it, and
-    comparing the result to what is inside this folder.
-    
-    You can either create these archives by hand, with another utility, or if
-    you are confident that your code is correct, from the code itself.  This is
-    done by setting an environment variable when running the tests, which will
-    cause the archive file produced by your code to be saved to a temporary
-    file in the current directory:
-    
-        SAVE_FAILED_TEST=1 npm test
-        mv error1.bin test/exe-myformat/default.bin
+ 2. Edit `formats/index.js` and add a line for your new file.
 
-If your archive format has any sort of compression or encryption,
-these algorithms should go into the `gamecomp` project instead.  This
-is to make it easier to reuse the algorithms, as many of them
-(particularly the compression ones) are used amongst many unrelated
-archive formats.  All the `gamecomp` algorithms are available to be
-used by any archive format in this library.
+If your file format has any sort of compression or encryption, these algorithms
+should go into the [gamecompjs](https://github.com/Malvineous/gamecompjs)
+project instead.  This is to make it easier to reuse the algorithms, as many of
+them (particularly the compression ones) are used amongst many unrelated file
+formats.  All the gamecompjs algorithms are available to be used by any format
+in this library.
 
 During development you can test your code like this:
 
     # Read a sample song and list its details, with debug messages on
-    $ DEBUG='gamecode:*' ./bin/gamemus open -f mus-myformat example.dat list
+    $ DEBUG='gamecode:*' ./bin/gamecode open -f exe-myformat example.exe list
 
     # Make sure the format is identified correctly or if not why not
-    $ DEBUG='gamecode:*' ./bin/gamemus identify example.dat
+    $ DEBUG='gamecode:*' ./bin/gamecode identify example.exe
 
 If you use `debug()` rather than `console.log()` in your code then these
 messages can be left in for future diagnosis as they will only appear when the
