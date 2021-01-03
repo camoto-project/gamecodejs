@@ -22,8 +22,7 @@ const FORMAT_ID = 'exe-cosmo1';
 import Debug from '../util/debug.js';
 const debug = Debug.extend(FORMAT_ID);
 
-import pkgRecordIOBuffer from '@malvineous/record-io-buffer';
-const { RecordBuffer, RecordType } = pkgRecordIOBuffer;
+import { RecordBuffer, RecordType } from '@camoto/record-io-buffer';
 import CodeHandler_Simple from '../interface/CodeHandler_Simple.js';
 
 export default class Code_Cosmo1 extends CodeHandler_Simple

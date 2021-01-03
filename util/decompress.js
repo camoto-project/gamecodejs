@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import cmp_lzexe from '@malvineous/gamecomp/compress/cmp-lzexe.js';
+import cmp_lzexe from '@camoto/gamecomp/compress/cmp-lzexe.js';
 
 /**
  * Decompress the executable, if it is compressed.

@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/Malvineous/gamecodejs#readme",
   "dependencies": {
-    "@camoto/gamecomp": "^1.1.3",
-    "@camoto/record-io-buffer": "^2.4.1",
+    "@camoto/gamecomp": "^2.0.2",
+    "@camoto/record-io-buffer": "^3.0.0",
     "command-line-args": "^5.1.1",
     "debug": "^4.3.1"
   },

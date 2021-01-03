@@ -20,8 +20,7 @@
 import Debug from '../util/debug.js';
 const debug = Debug.extend('CodeHandler_Simple');
 
-import pkgRecordIOBuffer from '@malvineous/record-io-buffer';
-const { RecordBuffer, RecordType } = pkgRecordIOBuffer;
+import { RecordBuffer, RecordType } from '@camoto/record-io-buffer';
 import CodeHandler from './CodeHandler.js';
 
 function attrType(a) {
