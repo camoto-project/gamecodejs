@@ -241,7 +241,7 @@ export default class Code_Cosmo1 extends CodeHandler_Simple
 			{ id: 'msg.key.period',    type: 'stringz', len: 6 },
 			{ id: 'msg.key.question',  type: 'stringz', len: 6 },
 			{ id: 'msg.key.rshift',    type: 'stringz', len: 6 },
-			{ id: 'msg.key.printscreen', type: 'stringz', len: 6, desc: 'Matches keypad *.' },
+			{ id: 'msg.key.pad.star',  type: 'stringz', len: 6 },
 			{ id: 'msg.key.alt',       type: 'stringz', len: 6 },
 			{ id: 'msg.key.space',     type: 'stringz', len: 6 },
 			{ id: 'msg.key.caps',      type: 'stringz', len: 6 },
