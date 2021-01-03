@@ -19,8 +19,11 @@
 
 import fs from 'fs';
 import commandLineArgs from 'command-line-args';
-import GameCode from '../index.js';
-import GameCodeDecompress from '../util/decompress.js';
+import {
+	all as gamecodeFormats,
+	decompressEXE,
+	findHandler as gamecodeFindHandler,
+} from '../index.js';
 import Debug from '../util/debug.js';
 const debug = Debug.extend('cli');
 
@@ -39,9 +42,9 @@ class Operations
 
 		console.log('Autodetecting file format...');
 		const content = {
-			main: GameCodeDecompress(fs.readFileSync(params.target)),
+			main: decompressEXE(fs.readFileSync(params.target)),
 		};
-		let handlers = GameCode.findHandler(content.main);
+		let handlers = gamecodeFindHandler(content.main, params.target);
 
 		console.log(handlers.length + ' format handler(s) matched');
 		if (handlers.length === 0) {
@@ -86,7 +89,7 @@ class Operations
 	open(params) {
 		let handler;
 		if (params.format) {
-			handler = GameCode.getHandler(params.format);
+			handler = gamecodeFormats.find(h => h.metadata().id === params.format);
 			if (!handler) {
 				throw new OperationsError('Invalid format code: ' + params.format);
 			}
@@ -96,10 +99,10 @@ class Operations
 		}
 
 		let content = {
-			main: GameCodeDecompress(fs.readFileSync(params.target)),
+			main: decompressEXE(fs.readFileSync(params.target)),
 		};
 		if (!handler) {
-			let handlers = GameCode.findHandler(content.main);
+			let handlers = gamecodeFindHandler(content.main, params.target);
 			if (handlers.length === 0) {
 				throw new OperationsError('Unable to identify this executable format.');
 			}
@@ -194,13 +197,13 @@ Object.keys(aliases).forEach(cmd => {
 
 function listFormats()
 {
-	GameCode.listHandlers().forEach(handler => {
+	for (const handler of gamecodeFormats) {
 		const md = handler.metadata();
 		console.log(`${md.id}: ${md.title}`);
 		if (md.params) Object.keys(md.params).forEach(p => {
 			console.log(`  * ${p}: ${md.params[p]}`);
 		});
-	});
+	}
 }
 
 async function processCommands()
