@@ -81,7 +81,13 @@ class Operations
 	}
 
 	list() {
-		for (const a of this.code.attributes) {
+		if (!this.code) {
+			throw new OperationsError('list: must open a file first.');
+		}
+
+		const ids = Object.keys(this.code.attributes).sort();
+		for (const id of ids) {
+			const a = this.code.attributes[id];
 			console.log(`${a.id}: "${a.value}"  ${a.desc ? `// ${a.desc}` : ''}`);
 		}
 	}
