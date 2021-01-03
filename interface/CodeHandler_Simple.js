@@ -1,7 +1,7 @@
-/**
- * @file Simple list of offsets and property types for executable handlers.
+/*
+ * Simple list of offsets and property types for executable handlers.
  *
- * Copyright (C) 2010-2020 Adam Nielsen <malvineous@shikadi.net>
+ * Copyright (C) 2010-2021 Adam Nielsen <malvineous@shikadi.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,4 +101,4 @@ export default class CodeHandler_Simple extends CodeHandler
 			main: buffer.getU8(),
 		};
 	}
-};
+}

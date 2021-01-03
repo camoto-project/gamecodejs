@@ -1,7 +1,7 @@
-/**
- * @file Base class and defaults for executable format handlers.
+/*
+ * Base class and defaults for executable format handlers.
  *
- * Copyright (C) 2020-2021 Adam Nielsen <malvineous@shikadi.net>
+ * Copyright (C) 2010-2021 Adam Nielsen <malvineous@shikadi.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -130,4 +130,4 @@ export default class CodeHandler
 	static patch(content, attributes) {
 		throw new Error('Not implemented yet.');
 	}
-};
+}
