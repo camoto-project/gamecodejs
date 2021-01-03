@@ -36,7 +36,6 @@ export const all = [
 	...Object.values(formats),
 ];
 
-
 /**
  * Get a handler by examining the file content.
  *

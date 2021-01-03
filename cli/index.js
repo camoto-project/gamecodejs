@@ -134,35 +134,23 @@ class Operations
 		});
 
 		this.code = handler.extract(content);
-		this.origFormat = handler.metadata().id;
+		this.originalContent = content;
+		this.handler = handler;
 	}
 
 	async save(params) {
+		if (!this.handler) {
+			throw new OperationsError('save: you must "open" a file first.');
+		}
 		if (!params.target) {
-			throw new OperationsError('save: missing filename');
-		}
-		if (!params.format) params.format = this.origFormat;
-
-		const handler = GameArchive.getHandler(params.format);
-		if (!handler) {
-			throw new OperationsError('save: invalid format code: ' + params.format);
+			throw new OperationsError('save: missing filename.');
 		}
 
-		const problems = handler.checkLimits(this.archive);
-		if (problems.length) {
-			console.log('There are problems preventing the requested changes from taking place:\n');
-			for (let i = 0; i < problems.length; i++) {
-				console.log((i + 1).toString().padStart(2) + ': ' + problems[i]);
-			}
-			console.log('\nPlease correct these issues and try again.\n');
-			throw new OperationsError('save: cannot save due to file format limitations.');
-		}
-
-		console.warn('Saving to', params.target, 'as', params.format);
-		const outContent = handler.generate(this.archive);
+		console.warn('Saving to', params.target);
+		const outContent = this.handler.patch(this.originalContent, this.code);
 
 		let promises = [];
-		const suppList = handler.supps(params.target, outContent.main);
+		const suppList = this.handler.supps(params.target, outContent.main);
 		if (suppList) Object.keys(suppList).forEach(id => {
 			console.warn(' - Saving supplemental file', suppList[id]);
 			promises.push(
@@ -172,6 +160,43 @@ class Operations
 		promises.push(fs.promises.writeFile(params.target, outContent.main));
 
 		return Promise.all(promises);
+	}
+
+	set(params) {
+		if (!params.attribute) {
+			throw new OperationsError('set: missing attribute to change (-a).');
+		}
+		if (!params.value) {
+			throw new OperationsError('set: missing value to set.');
+		}
+
+		for (const [id, a] of Object.entries(this.code.attributes)) {
+			if (id != params.attribute) {
+				continue;
+			}
+
+			a.value = params.value;
+			console.log(`"${id}" set to "${a.value}"`);
+			return;
+		}
+
+		throw new OperationsError(`set: unable to find attribute "${params.attribute}".`);
+	}
+
+	show(params) {
+		if (!params.attribute) {
+			throw new OperationsError('show: must specify an attribute name (use '
+				+ 'the "list" command to see them all).');
+		}
+
+		const a = this.code.attributes[params.attribute];
+		if (!a) {
+			throw new OperationsError(`show: attribute "${params.attribute}" could `
+				+ 'not be found (use the "list" command to see them all).');
+		}
+
+		process.stdout.write(a.value);
+		process.stdout.write('\n');
 	}
 }
 
@@ -187,6 +212,13 @@ Operations.names = {
 	save: [
 		{ name: 'format', alias: 'f' },
 		{ name: 'target', defaultOption: true },
+	],
+	set: [
+		{ name: 'attribute', alias: 'a' },
+		{ name: 'value', defaultOption: true },
+	],
+	show: [
+		{ name: 'attribute', defaultOption: true },
 	],
 };
 
@@ -250,12 +282,22 @@ Commands:
     Open the local <file> as an executable, autodetecting the format unless -f
     is given.  Use --formats for a list of possible values.
 
-  save
-    Save any changed attributes back to the previously opened executable file.
+  save <filename>
+    Save any changed attributes to a new file.
+
+  set -a <attribute> <value>
+    Change the value for one of the attributes shown by 'list'.
+
+  show <attribute>
+    Display the raw unprocessed value of the given attribute.
 
 Examples:
 
+  # List all available attributes in a file.
   gamecode open cosmo1.exe list
+
+  # The DEBUG environment variable can be used for troubleshooting.
+  DEBUG='gamecode:*' gamecode ...
 `);
 		return;
 	}
