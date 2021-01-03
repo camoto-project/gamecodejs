@@ -55,39 +55,46 @@ export default class GameCode
 	 * @param {Uint8Array} content
 	 *   Executable file content.
 	 *
+	 * @param {string} filename
+	 *   Filename where `content` was read from.  This is required to identify
+	 *   formats where the filename extension is significant.  This can be
+	 *   omitted for less accurate autodetection.
+	 *
 	 * @return {Array} of {CodeHandler} from formats/*.js that can handle the
 	 *   format, or an empty array if the format could not be identified.
 	 *
 	 * @example
 	 * const content = fs.readFileSync('cosmo1.exe');
-	 * const handler = GameCode.findHandler(content);
-	 * if (!handler) {
+	 * const handler = GameCode.findHandler(content, 'cosmo1.exe');
+	 * if (handler.length === 0) {
 	 *   console.log('Unable to identify file format.');
 	 * } else {
-	 *   const md = handler.metadata();
+	 *   const md = handler[0].metadata();
 	 *   console.log('File is in ' + md.id + ' format');
 	 * }
 	 */
-	static findHandler(content)
+	static findHandler(content, filename)
 	{
 		if (content.length === undefined) {
 			throw new Error('content parameter must be Uint8Array');
 		}
 		let handlers = [];
-		fileTypes.some(x => {
+		for (const x of fileTypes) {
 			const metadata = x.metadata();
 			debug(`Trying format handler ${metadata.id} (${metadata.title})`);
-			const confidence = x.identify(content);
+			const confidence = x.identify(content, filename);
 			if (confidence.valid === true) {
+				debug(`Matched ${metadata.id}: ${confidence.reason}`);
 				handlers = [x];
-				return true; // exit loop early
-			}
-			if (confidence.valid === undefined) {
+				break;
+			} else if (confidence.valid === undefined) {
+				debug(`Possible match for ${metadata.id}: ${confidence.reason}`);
 				handlers.push(x);
 				// keep going to look for a better match
+			} else {
+				debug(`Not ${metadata.id}: ${confidence.reason}`);
 			}
-			debug(` - Handler reported: ${confidence.reason}`);
-		});
+		}
 		return handlers;
 	}
 

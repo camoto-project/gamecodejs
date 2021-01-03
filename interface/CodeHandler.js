@@ -87,15 +87,25 @@ export default class CodeHandler
 	 * @param {Uint8Array} content
 	 *   The executable to examine.
 	 *
-	 * @return {Boolean} true if the data is definitely in this format, false if
-	 *   it is definitely not in this format, and undefined if the data could not
-	 *   be positively identified but it's possible it is in this format.
+	 * @param {string} filename
+	 *   The executable's filename in case it is relevant, for those formats where
+	 *   the filename is significant.
+	 *
+	 * @return {object} with a `.valid` property, set to `true` if the data is
+	 *   definitely in this format, `false` if it is definitely not in this
+	 *   format, and `undefined` if it's possible the data is in this format but
+	 *   there is not enough information to know for certain one way or the other.
+	 *   The returned object also has a `.reason` property containing a technical
+	 *   although user-friendly explanation as to why the data was decreed to be
+	 *   or not be in this format.  This is most useful when uncertain or
+	 *   rejecting content, as the user can then be informed why.
 	 */
 	// eslint-disable-next-line no-unused-vars
-	static identify(content) {
+	static identify(content, filename) {
 		return {
 			valid: false,
-			reason: 'identify() is unimplemented for this format.',
+			reason: 'The identify() function has not been implemented by the format '
+				+ 'handler, so autodetecting this format is not possible.',
 		};
 	}
 
