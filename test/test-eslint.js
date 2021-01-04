@@ -1,9 +1,9 @@
 import lint from 'mocha-eslint';
 
 const paths = [
-	'cli',
-	'compress',
-	'encrypt',
+	'cli/*.js',
+	'formats',
+	'interface',
 	'test',
 	'util',
 ];

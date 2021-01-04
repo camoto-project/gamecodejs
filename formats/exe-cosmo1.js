@@ -22,7 +22,6 @@ const FORMAT_ID = 'exe-cosmo1';
 import Debug from '../util/debug.js';
 const debug = Debug.extend(FORMAT_ID);
 
-import { RecordBuffer, RecordType } from '@camoto/record-io-buffer';
 import CodeHandler_Simple from '../interface/CodeHandler_Simple.js';
 
 export default class Code_Cosmo1 extends CodeHandler_Simple
@@ -278,4 +277,4 @@ export default class Code_Cosmo1 extends CodeHandler_Simple
 			{ id: 'msg.key.extra',     type: 'stringz', len: 6 },
 		];
 	}
-};
+}
