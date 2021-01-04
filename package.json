@@ -30,10 +30,10 @@
   "dependencies": {
     "@camoto/gamecomp": "^2.0.2",
     "@camoto/record-io-buffer": "^3.0.0",
-    "command-line-args": "^5.1.1",
     "debug": "^4.3.1"
   },
   "devDependencies": {
+    "command-line-args": "^5.1.1",
     "eslint": "^7.17.0",
     "mocha": "^8.2.1",
     "mocha-eslint": "^6.0.0"
