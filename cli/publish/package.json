@@ -1,0 +1,14 @@
+{
+  "name": "@camoto/gamecode-cli",
+  "version": "0.9.0",
+  "description": "CLI for gamecode.js, for use with `npm install -g`",
+  "bin": {
+    "gamecode": "./node_modules/@camoto/gamecode/bin/gamecode.js"
+  },
+  "author": "Adam Nielsen <malvineous@shikadi.net>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@camoto/gamecode": "*",
+    "command-line-args": "^5.1.1"
+  }
+}

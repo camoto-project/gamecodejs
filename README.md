@@ -26,11 +26,11 @@ into the game.
 ## Installation as an end-user
 
 If you wish to use the command-line `gamecode` utility to work with game
-executables directly, you can install the library globally on your system:
+executables directly, you can install the CLI globally on your system:
 
-    npm install -g @camoto/gamecode
+    npm install -g @camoto/gamecode-cli
 
-For Arch Linux users the AUR package `gamecodejs` is also available.
+For Arch Linux users the AUR package `gamecode-cli` is also available.
 
 ### Command line interface
 
