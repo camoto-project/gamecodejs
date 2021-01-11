@@ -91,26 +91,25 @@ See `cli/index.js` for example use.  The quick start is:
 If you would like to help add more file formats to the library, great!
 Clone the repo, and to get started:
 
-    npm install --dev
+    npm install
 
 Run the tests to make sure everything worked:
 
-    npm run -s test
+    npm test
 
 You're ready to go!  To add a new file format:
 
  1. Create a new file in the `formats/` folder for your format.
     Copying an existing file that covers a similar format will help
-    considerably.  If you're not sure, `arc-grp-build.js` is a good
-    starting point as it is fairly simple.
+    considerably.
     
- 2. Edit `formats/index.js` and add a line for your new file.
+ 2. Edit `formats/index.js` and add an `import` statement for your new file.
 
 If your file format has any sort of compression or encryption, these algorithms
-should go into the [gamecompjs](https://github.com/Malvineous/gamecompjs)
+should go into the [gamecomp.js](https://github.com/Malvineous/gamecompjs)
 project instead.  This is to make it easier to reuse the algorithms, as many of
 them (particularly the compression ones) are used amongst many unrelated file
-formats.  All the gamecompjs algorithms are available to be used by any format
+formats.  All the gamecomp.js algorithms are available to be used by any format
 in this library.
 
 During development you can test your code like this:
