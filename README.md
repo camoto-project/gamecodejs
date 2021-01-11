@@ -115,7 +115,7 @@ in this library.
 During development you can test your code like this:
 
     # Read a sample song and list its details, with debug messages on
-    $ DEBUG='gamecode:*' ./bin/gamecode open -f exe-myformat example.exe list
+    $ DEBUG='gamecode:*' ./bin/gamecode open -t exe-myformat example.exe list
 
     # Make sure the format is identified correctly or if not why not
     $ DEBUG='gamecode:*' ./bin/gamecode identify example.exe

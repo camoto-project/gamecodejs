@@ -118,7 +118,7 @@ class Operations
 					const m = h.metadata();
 					console.error(` * ${m.id} (${m.title})`);
 				});
-				throw new OperationsError('open: please use the -f option to specify the format.');
+				throw new OperationsError('open: please use the -t option to specify the format.');
 			}
 			handler = handlers[0];
 		}
@@ -206,11 +206,11 @@ Operations.names = {
 	],
 	list: [],
 	open: [
-		{ name: 'format', alias: 'f' },
+		{ name: 'format', alias: 't' },
 		{ name: 'target', defaultOption: true },
 	],
 	save: [
-		{ name: 'format', alias: 'f' },
+		{ name: 'format', alias: 't' },
 		{ name: 'target', defaultOption: true },
 	],
 	set: [
@@ -278,8 +278,8 @@ Commands:
   list | ls | dir
     Show all attributes in current executable.
 
-  open [-f format] <file>
-    Open the local <file> as an executable, autodetecting the format unless -f
+  open [-t format] <file>
+    Open the local <file> as an executable, autodetecting the format unless -t
     is given.  Use --formats for a list of possible values.
 
   save <filename>
