@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Malvineous/gamecodejs.git"
+    "url": "git+ssh://git@github.com/camoto-project/gamecodejs.git"
   },
   "keywords": [
     "camoto",
@@ -24,9 +24,9 @@
   "author": "Adam Nielsen <malvineous@shikadi.net>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Malvineous/gamecodejs/issues"
+    "url": "https://github.com/camoto-project/gamecodejs/issues"
   },
-  "homepage": "https://github.com/Malvineous/gamecodejs#readme",
+  "homepage": "https://github.com/camoto-project/gamecodejs#readme",
   "dependencies": {
     "@camoto/gamecomp": "^2.0.2",
     "@camoto/record-io-buffer": "^3.0.0",
