@@ -25,8 +25,10 @@ import CodeHandler from './CodeHandler.js';
 
 function attrType(a) {
 	switch (a.type) {
-		case 'stringz':
-			return RecordType.string.fixed.reqTerm(a.len);
+		case 'stringz':  return RecordType.string.fixed.reqTerm(a.len);
+		case 'string':   return RecordType.string.fixed.optTerm(a.len);
+		case 'uint8':    return RecordType.int.u8;
+		case 'uint16le': return RecordType.int.u16le;
 	}
 
 	throw new Error(`Unknown attribute data type "${a.type}".`);

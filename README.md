@@ -18,6 +18,7 @@ those are accessible through gamearchive.js as an archive file.
 The library currently supports these games:
 
  * Cosmo's Cosmic Adventure (episode 1)
+ * Dangerous Dave
 
 Eventually, the patching functionality will work on any .exe file, specific game
 support is only needed for things like changing the text messages hard-coded

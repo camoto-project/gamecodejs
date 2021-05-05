@@ -18,3 +18,4 @@
  */
 
 export { default as exe_cosmo1 } from './exe-cosmo1.js';
+export { default as exe_ddave } from './exe-ddave.js';
