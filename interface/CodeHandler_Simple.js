@@ -23,17 +23,6 @@ const debug = Debug.extend('CodeHandler_Simple');
 import { RecordBuffer, RecordType } from '@camoto/record-io-buffer';
 import CodeHandler from './CodeHandler.js';
 
-function attrType(a) {
-	switch (a.type) {
-		case 'stringz':  return RecordType.string.fixed.reqTerm(a.len);
-		case 'string':   return RecordType.string.fixed.optTerm(a.len);
-		case 'uint8':    return RecordType.int.u8;
-		case 'uint16le': return RecordType.int.u16le;
-	}
-
-	throw new Error(`Unknown attribute data type "${a.type}".`);
-}
-
 export default class CodeHandler_Simple extends CodeHandler
 {
 	static attributes() {
@@ -69,14 +58,22 @@ export default class CodeHandler_Simple extends CodeHandler
 			if (a.offset !== undefined) {
 				buffer.seekAbs(a.offset);
 			}
-			const recordType = attrType(a);
-			const value = buffer.read(recordType);
+			let value;
+			try {
+				value = buffer.read(a.type);
+			} catch (e) {
+				console.error(e);
+				throw new Error(`Error reading field ${a.id}: ${e.message}`);
+			}
+
+			if (a.valueOffset) value += a.valueOffset;
 
 			attributes[a.id] = {
 				...a,
 				value,
 			};
 			//delete attributes[a.id].id;
+			delete attributes[a.id].valueOffset;
 		}
 
 		return {
@@ -85,17 +82,24 @@ export default class CodeHandler_Simple extends CodeHandler
 	}
 
 	static patch({main: content}, exe) {
+		const ats = this.attributes();
 		let buffer = new RecordBuffer(content);
 
-		for (const idAttr of Object.keys(exe.attributes)) {
-			const a = exe.attributes[idAttr];
-
+		for (const a of ats) {
 			if (a.offset !== undefined) {
 				buffer.seekAbs(a.offset);
 			}
 
-			const recordType = attrType(a);
-			buffer.write(recordType, a.value);
+			if (exe.attributes[a.id]) {
+				let targetValue = exe.attributes[a.id].value;
+				if (a.valueOffset) targetValue -= a.valueOffset;
+
+				buffer.write(a.type, targetValue);
+			} else {
+				// Value omitted, skip over the field.
+				debug(`Missing value for ${a.id}`);
+				buffer.seekRel(a.type.len);
+			}
 		}
 
 		return {
