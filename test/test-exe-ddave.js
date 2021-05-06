@@ -48,7 +48,8 @@ describe(`Extra tests for ${md.title} [${md.id}]`, function() {
 					content['dave.exe'].main,
 					content['dave.exe'].main.filename
 				);
-				assert.equal(result.valid, true, `Handler did not recognise ${content['dave.exe'].main.filename}: ${result.reason}`);
+				assert.equal(result.valid, true, `Handler did not recognise `
+					+ `${content['dave.exe'].main.filename}: ${result.reason}`);
 			});
 
 		}); // identify()

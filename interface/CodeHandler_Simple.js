@@ -20,7 +20,7 @@
 import Debug from '../util/debug.js';
 const debug = Debug.extend('CodeHandler_Simple');
 
-import { RecordBuffer, RecordType } from '@camoto/record-io-buffer';
+import { RecordBuffer } from '@camoto/record-io-buffer';
 import CodeHandler from './CodeHandler.js';
 
 export default class CodeHandler_Simple extends CodeHandler

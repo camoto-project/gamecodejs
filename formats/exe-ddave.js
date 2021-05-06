@@ -436,8 +436,6 @@ export default class Code_DDave extends CodeHandler_Simple
 		for (let i = 1; i <= 5; i++) {
 			let score = parseInt(exe.attributes[`default.hsc.${i}.score`].value);
 			for (let s = 5; s >= 1; s--) {
-				const keyDigit = `default.hsc.${i}.digit.${s}`;
-
 				updated[`default.hsc.${i}.digit.${s}`] = {
 					value: score % 10,
 				};
