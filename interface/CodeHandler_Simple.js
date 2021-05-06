@@ -98,7 +98,13 @@ export default class CodeHandler_Simple extends CodeHandler
 				let targetValue = exe.attributes[a.id].value;
 				if (a.valueOffset) targetValue -= a.valueOffset;
 
-				buffer.write(a.type, targetValue);
+				try {
+					buffer.write(a.type, targetValue);
+				} catch (e) {
+					console.error(`Error setting "${a.id}" to value`, targetValue,
+						'from original value', exe.attributes[a.id].value, 'because', e);
+					throw new Error(`Unable to write value for "${a.id}": ${e.message}`);
+				}
 			} else {
 				// Value omitted, skip over the field.
 				debug(`Missing value for ${a.id}`);
