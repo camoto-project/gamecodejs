@@ -68,6 +68,10 @@ export default class CodeHandler_Simple extends CodeHandler
 
 			if (a.valueOffset) value += a.valueOffset;
 
+			if (attributes[a.id]) {
+				throw Error(`BUG: File format declared multiple items with the ID "${a.id}".`);
+			}
+
 			attributes[a.id] = {
 				...a,
 				value,
