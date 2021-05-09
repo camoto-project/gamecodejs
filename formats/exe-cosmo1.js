@@ -151,7 +151,7 @@ export default class Code_Cosmo1 extends CodeHandler_Simple
 			{ id: 'filename.sounds.3', type: stringz(12) },
 			{ id: 'filename.tiles.player', type: stringz(12) },
 			{ id: 'filename.tileset.statusbar', type: stringz(11) },
-			{ id: 'filename.tileset.level', type: stringz(10) },
+			{ id: 'filename.tileset.solid', type: stringz(10) },
 			{ id: 'filename.tileinfo.actors', type: stringz(13) },
 			{ id: 'filename.tileinfo.player', type: stringz(13) },
 			{ id: 'filename.tileinfo.story', type: stringz(13) },
