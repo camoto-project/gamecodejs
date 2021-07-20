@@ -19,6 +19,7 @@ The library currently supports these games:
 
  * Cosmo's Cosmic Adventure (episode 1)
  * Dangerous Dave
+ * Nomad
 
 Eventually, the patching functionality will work on any .exe file, specific game
 support is only needed for things like changing the text messages hard-coded
