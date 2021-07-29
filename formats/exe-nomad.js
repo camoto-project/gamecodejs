@@ -52,17 +52,17 @@ export default class Code_Nomad extends CodeHandler_Simple {
 
 	static attributes() {
 		return [{
-			id: 'planet.orbit-distance.multiplier.common',
+			id: 'game.planet.orbit-distance.multiplier.common',
 			type: RecordType.int.u16le,
 			offset: 0x19DF5,
 			desc: 'Multiplier for the player\'s apparent orbital distance above most planets.'
 		}, {
-			id: 'planet.orbit-distance.multiplier.losten',
+			id: 'game.planet.orbit-distance.multiplier.losten',
 			type: RecordType.int.u16le,
 			offset: 0x19DFD,
 			desc: 'Multiplier for the player\'s apparent orbital distance above the planet Losten.'
 		}, {
-			id: 'planet.rotation-per-frame.second-harmony',
+			id: 'game.planet.orbit-speed.second-harmony',
 			type: RecordType.int.s16le,
 			offset: 0x19F7D,
 			desc: 'Number of angular steps through which the starbase Second Harmony rotates per frame. ' +
@@ -219,12 +219,12 @@ export default class Code_Nomad extends CodeHandler_Simple {
 		}, {
 			id: 'filename.fullscreen.cred0003',
 			type: stringz(9),
-			offset: 0x3128A,
+			offset: 0x31293,
 			desc: 'Fullscreen image filename for credits page 3'
 		}, {
 			id: 'filename.fullscreen.cred0004',
 			type: stringz(9),
-			offset: 0x31293,
+			offset: 0x3128A,
 			desc: 'Fullscreen image filename for credits page 4'
 		}, {
 			id: 'filename.fullscreen.cred0005',
@@ -399,7 +399,7 @@ export default class Code_Nomad extends CodeHandler_Simple {
 		}, {
 			id: 'filename.stamproll.guyhead2',
 			type: stringz(13),
-			offset: 0x31885,
+			offset: 0x318B1,
 			desc: 'Stamp image filename for intro briefing guy head animation B'
 		}, {
 			id: 'filename.stamproll.guyturn',
@@ -755,7 +755,7 @@ export default class Code_Nomad extends CodeHandler_Simple {
 		},
 
 		{
-			id: 'game.restart.chocolate',
+			id: 'game.inventory.bootstrap-chocolate',
 			type: RecordType.int.u8,
 			offset: 0x3EDF1,
 			desc: 'Number of chocolate bars to receive when restarting after game over'
