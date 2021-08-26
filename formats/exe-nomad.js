@@ -138,12 +138,12 @@ export default class Code_Nomad extends CodeHandler_Simple {
 		}, {
 			id: 'filename.font.large',
 			type: stringz(11),
-			offset: 0x30BC2,
+			offset: 0x31BC2,
 			desc: 'Large font filename'
 		}, {
 			id: 'filename.font.small',
 			type: stringz(11),
-			offset: 0x30BCD,
+			offset: 0x31BCD,
 			desc: 'Small font filename'
 		}, {
 			id: 'filename.gametext',
@@ -262,7 +262,7 @@ export default class Code_Nomad extends CodeHandler_Simple {
 			offset: 0x312CD,
 			desc: 'Fullscreen image filename for endgame (Alliance victory)'
 		}, {
-			id: 'filename.fullscreen.win02',
+			id: 'filename.fullscreen.win03',
 			type: stringz(6),
 			offset: 0x312D3,
 			desc: 'Fullscreen image filename for endgame (Alliance victory)'
@@ -296,6 +296,111 @@ export default class Code_Nomad extends CodeHandler_Simple {
 			type: stringz(10),
 			offset: 0x31929,
 			desc: 'Fullscreen image filename for cockpit zoom out, frame 5'
+		}, {
+			id: 'filename.fullscreen.backg',
+			type: stringz(10),
+			offset: 0x31830,
+			desc: 'Fullscreen image filename for title screen background'
+		}, {
+			id: 'filename.fullscreen.snow',
+			type: stringz(9),
+			offset: 0x31869,
+			desc: 'Fullscreen image filename for snowfield background'
+		}, {
+			id: 'filename.fullscreen.oesi',
+			type: stringz(9),
+			offset: 0x31933,
+			desc: 'Fullscreen image filename for OESI logo'
+		}, {
+			id: 'filename.fullscreen.fixed',
+			type: stringz(10),
+			offset: 0x31948,
+			desc: 'Fullscreen image filename for repaired ship in hangar'
+		}, {
+			id: 'filename.fullscreen.crashed',
+			type: stringz(12),
+			offset: 0x3193C,
+			desc: 'Fullscreen image filename for crashed ship in snow'
+		}, {
+			id: 'filename.stamp.pscan',
+			type: stringz(10),
+			offset: 0x32DFA,
+			desc: 'Stamp image filename for planet scan border'
+		}, {
+			id: 'filename.stamp.navmap',
+			type: stringz(11),
+			offset: 0x34C82,
+			desc: 'Stamp image filename for nav map galaxy background'
+		}, {
+			id: 'filename.stamp.navbkgnd',
+			type: stringz(13),
+			offset: 0x34C8D,
+			desc: 'Stamp image filename for nav map sector background'
+		}, {
+			id: 'filename.stamp.gtek',
+			type: stringz(10),
+			offset: 0x3184E,
+			desc: 'Stamp image filename for GameTek intro logo'
+		}, {
+			id: 'filename.stamp.design',
+			type: stringz(11),
+			offset: 0x31843,
+			desc: 'Stamp image filename for Intense! Interactive intro logo'
+		}, {
+			id: 'filename.stamp.papyrus',
+			type: stringz(12),
+			offset: 0x31858,
+			desc: 'Stamp image filename for Papyrus Design Group intro logo'
+		}, {
+			id: 'filename.stamp.border',
+			type: stringz(11),
+			offset: 0x318F6,
+			desc: 'Stamp image filename for intro briefing border'
+		}, {
+			id: 'filename.stamp.guybody',
+			type: stringz(12),
+			offset: 0x3188D,
+			desc: 'Stamp image filename for intro briefing guy'
+		}, {
+			id: 'filename.stamp.sh01',
+			type: stringz(9),
+			offset: 0x33095,
+			desc: 'Stamp image filename for ship shield, frame A'
+		}, {
+			id: 'filename.stamp.sh02',
+			type: stringz(9),
+			offset: 0x3309E,
+			desc: 'Stamp image filename for ship shield, frame B'
+		}, {
+			id: 'filename.stamproll.shipst',
+			type: stringz(11),
+			offset: 0x351A2,
+			desc: 'Stamp image filename for engineering system icons'
+		}, {
+			id: 'filename.stamproll.shp',
+			type: stringz(8),
+			offset: 0x33000,
+			desc: 'Stamp image filename for ship scan schematics'
+		}, {
+			id: 'filename.stamproll.smk',
+			type: stringz(8),
+			offset: 0x31885,
+			desc: 'Stamp image filename for snow crash animation'
+		}, {
+			id: 'filename.stamproll.guyhead',
+			type: stringz(12),
+			offset: 0x31899,
+			desc: 'Stamp image filename for intro briefing guy head animation A'
+		}, {
+			id: 'filename.stamproll.guyhead2',
+			type: stringz(13),
+			offset: 0x31885,
+			desc: 'Stamp image filename for intro briefing guy head animation B'
+		}, {
+			id: 'filename.stamproll.guyturn',
+			type: stringz(12),
+			offset: 0x318A5,
+			desc: 'Stamp image filename for intro briefing guy body animation'
 		},
 
 		{
@@ -645,7 +750,7 @@ export default class Code_Nomad extends CodeHandler_Simple {
 		},
 
 		{
-			id: 'inventory.restart.chocolate',
+			id: 'game.restart.chocolate',
 			type: RecordType.int.u8,
 			offset: 0x3EDF1,
 			desc: 'Number of chocolate bars to receive when restarting after game over'
