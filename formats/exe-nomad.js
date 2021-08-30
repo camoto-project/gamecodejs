@@ -338,14 +338,19 @@ export default class Code_Nomad extends CodeHandler_Simple {
 			desc: 'Stamp image filename for nav map sector background'
 		}, {
 			id: 'filename.stamp.gtek',
-			type: stringz(10),
-			offset: 0x3184E,
+			type: stringz(9),
+			offset: 0x3183A,
 			desc: 'Stamp image filename for GameTek intro logo'
 		}, {
 			id: 'filename.stamp.design',
 			type: stringz(11),
 			offset: 0x31843,
 			desc: 'Stamp image filename for Intense! Interactive intro logo'
+		}, {
+			id: 'filename.stamp.nomad',
+			type: stringz(10),
+			offset: 0x3184E,
+			desc: 'Stamp image filename for Nomad intro logo'
 		}, {
 			id: 'filename.stamp.papyrus',
 			type: stringz(12),
