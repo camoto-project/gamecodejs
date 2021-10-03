@@ -61,8 +61,8 @@ describe(`Extra tests for ${md.title} [${md.id}]`, function() {
 
 				assert.equal(exe.attributes['filename.cfg'].value, 'nomad.cfg');
 				assert.equal(exe.attributes['filename.gametext'].value, 'GAMETEXT.TXT');
-				assert.equal(exe.attributes['planet.orbit-distance.multiplier.common'].value, 1);
-				assert.equal(exe.attributes['planet.rotation-per-frame.second-harmony'].value, 512);
+				assert.equal(exe.attributes['game.planet.orbit-distance.multiplier.common'].value, 1);
+				assert.equal(exe.attributes['game.planet.orbit-speed.second-harmony'].value, 512);
 			});
 
 		}); // extract()
