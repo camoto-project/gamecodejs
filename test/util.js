@@ -23,9 +23,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import {
-	decompressEXE,
-} from '../index.js';
+import { decompress_exe } from '@camoto/gamecomp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -77,7 +75,7 @@ export default class TestUtil {
 		u8.set(buffer);
 
 		// Unpack .exe if packed.
-		u8 = decompressEXE(u8);
+		u8 = decompress_exe(u8);
 
 		// Save the filename for later use.
 		u8.filename = filename;

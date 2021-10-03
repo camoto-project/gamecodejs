@@ -20,7 +20,6 @@
 export * from './formats/index.js';
 
 import * as formats from './formats/index.js';
-export { default as decompressEXE } from './util/decompress.js';
 
 import Debug from './util/debug.js';
 const debug = Debug.extend('index');
