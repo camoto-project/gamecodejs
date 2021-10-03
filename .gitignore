@@ -3,3 +3,4 @@ test/exe-cosmo1/cosmo1.exe
 test/exe-cosmo1/cosmo1.cmp-lzexe.revealed
 test/exe-ddave/dave.exe
 test/exe-ddave/dave.cmp-lzexe.revealed
+test/exe-nomad/nomad.exe
